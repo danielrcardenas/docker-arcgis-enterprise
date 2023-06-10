@@ -1,12 +1,12 @@
-From wildsong/ubuntu-server:latest
-LABEL maintainer="brian@wildsong.biz"
-ENV REFRESHED_AT 2021-09-23
-ENV ESRI_VERSION 10.9
+FROM ubuntu:20.04
+LABEL maintainer="danielrcardenas@gmail.com"
+ENV REFRESHED_AT 2023-06-06
+ENV ESRI_VERSION 11.1
 
 EXPOSE 6080 6443
 # If you are not using a Docker network to connect containers
 # you might want to expose these ports, too.
-# EXPOSE 1098 4000 4001 4002 4003 4004 6006 6099
+EXPOSE 1098 4000 4001 4002 4003 4004 6006 6099
 
 # Refer to ESRI docs; this expands limits for user arcgis.
 ADD limits.conf /etc/security/limits.conf
@@ -14,7 +14,7 @@ ADD limits.conf /etc/security/limits.conf
 ENV HOME /home/arcgis
 
 # "ADD" knows how to unpack the tar file directly into the docker image.
-ADD ArcGIS_Server_Linux_109*.tar.gz ${HOME}
+ADD ArcGIS_Server_Linux_11*.tar.gz ${HOME}
 
 # Add the script that can create the initial admin user and site
 # I can't actually run the create_new_site.py here because it will have
